@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const TimeData = [
   "01:00 AM",
@@ -10,23 +10,32 @@ const TimeData = [
   "07:00 AM",
 ];
 
-const TimeComponent = ({ data, handleTime }) => {
+const TimeComponent = ({ handleTime, date, time }) => {
   return (
-    <div onClick={() => handleTime(data)} className="timecomponent">
-      <h2>{data}</h2>
+    <div onClick={() => handleTime(date, time)} className="timecomponent">
+      <h2>{time}</h2>
     </div>
   );
 };
 
-const TimePicker = () => {
-  const handleTime = (time) => {
-    console.log(time);
+const TimePicker = ({ date }) => {
+  const [dateTime, setDateTime] = useState({
+    date: "",
+    time: "",
+  });
+
+  useEffect(() => {
+    console.log(dateTime);
+  }, [dateTime])
+
+  const handleTime = (date, time) => {
+    setDateTime({ ...dateTime, date: date, time: time });
   };
 
   return (
     <div className="timepicker">
       {TimeData.map((time) => (
-        <TimeComponent handleTime={handleTime} data={time} />
+        <TimeComponent handleTime={handleTime} date={date} time={time} />
       ))}
     </div>
   );

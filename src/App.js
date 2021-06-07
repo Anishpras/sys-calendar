@@ -1,12 +1,10 @@
-import {
-  CalendarComponent,
-} from "@syncfusion/ej2-react-calendars";
+import { CalendarComponent } from "@syncfusion/ej2-react-calendars";
 import { useState } from "react";
 import TimePicker from "./TimePicker";
 import "./App.css";
 
 function App() {
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState("");
   const [timeActive, setTimeActive] = useState(false);
 
   const handleChange = (e) => {

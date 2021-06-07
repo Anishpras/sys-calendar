@@ -1,0 +1,19 @@
+.timepicker {
+  background: #f5f5f9;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+.timecomponent {
+  display: flex;
+  border-radius: 40px;
+  background: #ff877f;
+  flex-wrap: wrap;
+  //   align-items: center;
+  justify-content: center;
+  margin: 5px;
+  color: #fff;
+}
+.timeSelected {
+  border: 1px solid black;
+}

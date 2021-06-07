@@ -11,6 +11,7 @@ function App() {
     date: "",
     time: "",
   });
+  const [timeActive, setTimeActive] = useState(false);
   // const [value, onChange] = useState("10:00");
   // const startDate = new Date(new Date().getFullYear(), new Date().getMonth());
   // const endDate = new Date(new Date().getFullYear(), new Date().getMonth(), 30);
@@ -25,16 +26,16 @@ function App() {
     setDateTime({ ...dateTime, date: tempDate });
     // document.querySelector(".e-time-icon").click();
     // timePickerRef.current.setAttribute("disabled", true);
+    setTimeActive(true);
   };
 
   return (
     <div>
       <CalendarComponent
         onChange={handleChange}
-        start="Year"
-        isMultiSelection="true"></CalendarComponent>
+        start="Year"></CalendarComponent>
       {/* <TimePicker onChange={onChange} value={value} /> */}
-      {<TimePicker />}
+      {timeActive && <TimePicker />}
     </div>
   );
 }

@@ -20,7 +20,7 @@ function App() {
       <CalendarComponent
         onChange={handleChange}
         start="Year"></CalendarComponent>
-      {timeActive && <TimePicker date={date} />}
+      {timeActive && <TimePicker date={date} setTimeActive={setTimeActive} />}
     </div>
   );
 }

@@ -18,7 +18,34 @@ const TimeComponent = ({ handleTime, date, time }) => {
   );
 };
 
-const TimePicker = ({ date }) => {
+const TimePicker = ({ date, setTimeActive }) => {
+  // const { mhpID } = useParams();
+
+  // const saveAppointment = () => {
+  //   firestore
+  //     .collection('mhp')
+  //     .doc(mhpID)
+  //     .collection('appointments')
+  //     .doc(date)
+  //     .update({
+  //       appointments : FieldValue.arrayUnion({
+  //         client: user.uid,
+  //         time: time,
+  //       })
+  //     })
+  //   firestore
+  //     .collection('users')
+  //     .doc(user.uid)
+  //     .collection('appointments')
+  //     .doc(date)
+  //     .update({
+  //       appointments : FieldValue.arrayUnion({
+  //         mhp: mhpID,
+  //         time: time,
+  //       })
+  //     })
+  // }
+
   const [dateTime, setDateTime] = useState([]);
 
   useEffect(() => {

@@ -17,8 +17,7 @@ function App() {
     <div>
       <CalendarComponent
         onChange={handleChange}
-        start="Year"
-        isMultiSelection="true"></CalendarComponent>
+        start="Year"></CalendarComponent>
       {timeActive && <TimePicker date={date} />}
     </div>
   );

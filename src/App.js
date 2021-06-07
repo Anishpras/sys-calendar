@@ -17,19 +17,20 @@ function App() {
   };
 
   return (
-    <div className="main" >
-    <NavBar/>
-    <div className="app">
-    <Psychiatrist/>
-    <div className="calender-wrapper"  >  
-    <CalendarComponent
-    onChange={handleChange}
-    start="Year"></CalendarComponent>
-    {/* <TimePicker onChange={onChange} value={value} /> */}
-    {timeActive && <TimePicker />}
-    </div>
-    <EventSection/>
-    </div>
+    <div className="main">
+      <NavBar />
+      <div className="app">
+        <Psychiatrist />
+        <div className="calender-wrapper">
+          <CalendarComponent
+            onChange={handleChange}
+            start="Year"
+          ></CalendarComponent>
+          {/* <TimePicker onChange={onChange} value={value} /> */}
+          {timeActive && <TimePicker />}
+        </div>
+        <EventSection />
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./timePicker.scss";
 const TimeData = [
   "01:00 AM",
   "02:00 AM",
@@ -19,17 +19,14 @@ const TimeComponent = ({ handleTime, date, time }) => {
 };
 
 const TimePicker = ({ date }) => {
-  const [dateTime, setDateTime] = useState({
-    date: "",
-    time: "",
-  });
+  const [dateTime, setDateTime] = useState([]);
 
   useEffect(() => {
     console.log(dateTime);
-  }, [dateTime])
+  }, [dateTime]);
 
   const handleTime = (date, time) => {
-    setDateTime({ ...dateTime, date: date, time: time });
+    setDateTime([...dateTime, { date: date, time: time }]);
   };
 
   return (

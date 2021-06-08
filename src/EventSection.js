@@ -2,6 +2,24 @@ import React from "react";
 import "./EventSection.css";
 import profile from "./assest/profile.png";
 function EventSection() {
+  // const { mhpID } = useParams();
+  // const [therapist, setTherapist] = useState({});
+
+  // useEffect(async () => {
+  //   console.log(mhpID);
+  //   const therapistData = await firestore.collection('mhp').doc(mhpID).get();
+  //   const data = therapistData.data();
+  //   setTherapist(data);
+  // }, []);
+
+  // const [client, setClient] = useState({});
+
+  // useEffect(async () => {
+  //   const clientData = await firestore.collection('users').doc(user.uid).get();
+  //   const data = clientData.data();
+  //   setClient(data);
+  // }, []);
+
   return (
     <div className="event">
       <div className="psychiatrist-sum">

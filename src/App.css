@@ -151,7 +151,16 @@ table {
 
 }
 
-.e-calendar .e-content.e-month td, .e-bigger.e-small .e-calendar .e-content.e-month td {
+.e-calendar .e-content.e-month td, 
+.e-bigger.e-small .e-calendar .e-content.e-month td {
+    padding: 20px;
+}
+
+.e-calendar .e-content.e-year td, 
+.e-calendar .e-content.e-decade td, 
+.e-bigger.e-small .e-calendar 
+.e-content.e-year td, 
+.e-bigger.e-small .e-calendar .e-content.e-decade td {
     padding: 20px;
 }
 

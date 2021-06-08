@@ -151,6 +151,10 @@ table {
 
 }
 
+.e-calendar .e-content.e-month td, .e-bigger.e-small .e-calendar .e-content.e-month td {
+    padding: 20px;
+}
+
 @media (min-width: 768px) and (max-width:1024px) {
     .e-calendar {
         display: flex;

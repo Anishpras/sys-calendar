@@ -11,7 +11,7 @@ function Psychiatrist() {
           return (
             <div className="psy-content">
               <div className="psy-header">
-                <img className="psy-profile" src={profile} />
+                <img className="psy-profile" src={profile} alt="" />
                 <div className="psy-header-right">
                   <h3>{data.name} </h3>
                   <p> {data.email} </p>

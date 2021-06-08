@@ -1,1 +1,198 @@
 @import url("https://cdn.syncfusion.com/ej2/material.css");
+
+.main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.app {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.calender-wrapper {
+    display: flex;
+    position: relative;
+    left: 20px;
+}
+
+
+/* calender style  */
+
+.e-control,
+.e-control [class^='e-'],
+.e-control [class*=' e-'] {
+    box-sizing: border-box;
+    /* position: unset; */
+    padding-top: 20px;
+}
+
+/* main calender   */
+.e-calendar {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    min-width: 450px;
+    height: 92vh;
+    align-items: center;
+    background: radial-gradient(121.08deg, #FFFFFF 0%, rgba(255, 255, 255, 0.81) 89.66%);
+    backdrop-filter: blur(50px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 42px 0px 0px 42px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* calendar Header */
+
+.e-header {
+
+    width: 415px;
+}
+
+.e-day {
+    position: relative;
+    left: 40%;
+    padding-bottom: 2rem;
+    font-size: .8rem;
+}
+
+.e-icon-container {
+    position: absolute;
+    width: 400px;
+    right: 50%;
+}
+
+.e-next {
+    position: relative;
+    left: 340px;
+    transform: rotate(-90deg);
+}
+
+.e-prev {
+    position: relative;
+    left: 50px;
+    transform: rotate(-90deg);
+}
+
+/* middle calender   */
+.e-calendar th,
+.e-bigger.e-small .e-calendar th {
+    border-bottom: 0;
+    color: black;
+    font-size: 1rem;
+}
+
+.e-calendar .e-content thead,
+.e-bigger.e-small .e-calendar .e-content thead {
+    background: none;
+    padding-bottom: 10px;
+    position: relative;
+    left: 10px;
+}
+
+.e-content {
+    min-width: 400.41px;
+    height: 405.02px;
+}
+
+table {
+    position: relative;
+    right: 20px;
+
+}
+
+.e-week-header {
+
+    font-size: 10px;
+
+}
+
+
+.e-zoomin {
+    position: relative;
+    width: 389.41px;
+    height: 330.37px;
+    right: 10px;
+}
+
+
+
+.e-calendar .e-content td.e-selected span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-selected span.e-day {
+    background-color: #FD8A83;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.e-calendar .e-content td.e-today span.e-day,
+.e-calendar .e-content td.e-focused-date.e-today span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-today span.e-day,
+.e-bigger.e-small .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    background: none;
+    border: 1px solid #FD8A83;
+    border-radius: 50%;
+    color: black;
+}
+
+.e-calendar .e-header .e-title,
+.e-bigger.e-small .e-calendar .e-header .e-title {
+    color: black;
+
+}
+
+.e-calendar .e-header .e-title,
+.e-bigger.e-small .e-calendar .e-header .e-title {
+
+    font-size: 1.3rem;
+
+}
+
+@media (min-width: 768px) and (max-width:1024px) {
+    .e-calendar {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        min-width: 410px;
+        height: 58vh;
+        margin-top: 10px;
+
+    }
+
+    .calender-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 746px;
+        position: relative;
+        left: 0;
+        border-radius: 0px 42px 42px 0px;
+    }
+
+
+}
+
+@media (max-width: 768px){
+    .e-calendar {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        width:100%;
+        height: 38rem;
+        margin-top: 10px;
+        border-radius: 42px 42px 42px 42px;
+
+    }
+
+    .calender-wrapper {
+        display: flex;
+        margin-left: 8px;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+        left: 0;
+        border-radius: 42px 42px 42px 42px;
+    }
+}

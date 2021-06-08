@@ -2,6 +2,9 @@ import { CalendarComponent } from "@syncfusion/ej2-react-calendars";
 import { useState } from "react";
 import TimePicker from "./TimePicker";
 import "./App.css";
+import Psychiatrist from "./Psychiatrist";
+import EventSection from "./EventSection";
+import NavBar from "./NavBar";
 
 function App() {
   const [date, setDate] = useState("");
@@ -14,11 +17,19 @@ function App() {
   };
 
   return (
-    <div>
-      <CalendarComponent
-        onChange={handleChange}
-        start="Year"></CalendarComponent>
-      {timeActive && <TimePicker date={date} setTimeActive={setTimeActive} />}
+    <div className="main">
+      <NavBar />
+      <div className="app">
+        <Psychiatrist />
+        <div className="calender-wrapper">
+          <CalendarComponent
+            onChange={handleChange}
+            start="Year"
+          ></CalendarComponent>
+          {timeActive && <TimePicker date={date} setTimeActive={setTimeActive} />}
+        </div>
+        <EventSection />
+      </div>
     </div>
   );
 }

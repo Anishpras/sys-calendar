@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import Group88 from './assest/Group88.png'
 import "./timePicker.scss";
 const TimeData = [
   "01:00 AM",
@@ -58,9 +60,13 @@ const TimePicker = ({ date, setTimeActive }) => {
 
   return (
     <div className="timepicker">
+    <img className="arrow-sign"   src={Group88}   />
+    <div className="timepicker-wrapper" >   
       {TimeData.map((time) => (
         <TimeComponent handleTime={handleTime} date={date} time={time} />
       ))}
+      </div>
+      <img className="arrow-sign1"   src={Group88}   />
     </div>
   );
 };

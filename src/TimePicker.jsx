@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import Group88 from "./assest/Group88.png";
-import "./timePicker.scss";
+import "./timePicker.css";
 const TimeData = [
   "01:00 AM",
   "02:00 AM",

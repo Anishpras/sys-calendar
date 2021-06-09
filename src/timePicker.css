@@ -22,8 +22,26 @@
   font-size: 1rem;
   line-height: 22px;
 }
+.active {
+  width: 127px;
+  height: 39px;
 
+  background: #4947b0;
+  border-radius: 40px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 22px;
+}
 .timecomponent h2 {
+  font-size: 1.2rem;
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.active h2 {
   font-size: 1.2rem;
   padding: 10px;
   padding-left: 20px;
@@ -31,6 +49,11 @@
 
 .timecomponent :hover {
   background-color: #4947b0;
+  color: white;
+  border-radius: 40px;
+}
+.active :hover {
+  background-color: #7170b0;
   color: white;
   border-radius: 40px;
 }
@@ -46,7 +69,6 @@
   bottom: 0;
   transform: rotate(180deg);
 } */
-
 
 .timepicker::-webkit-scrollbar {
   display: none;

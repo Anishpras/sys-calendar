@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./timePicker.css";
-const TimeData = [
-  "01:00 AM",
-  "02:00 AM",
-  "03:00 AM",
-  "04:00 AM",
-  "05:00 AM",
-  "06:00 AM",
-  "07:00 AM",
-  "08:00 AM",
-  "09:00 AM",
-  "11:00 AM",
-  "12:00 AM",
-  "01:00 PM",
-  "02:00 PM",
-  "03:00 PM",
-  "04:00 PM",
-  "05:00 PM",
-];
 
-const TimeComponent = ({ handleTime, date, time }) => {
+const TimeComponent = ({ handleTime, date, time, active, index }) => {
   return (
-    <div onClick={() => handleTime(date, time)} className="timecomponent">
+    <div
+      onClick={() => handleTime(date, time, index)}
+      className={active ? "active" : "timecomponent"}>
       <h2>{time}</h2>
     </div>
   );
@@ -56,13 +40,25 @@ const TimePicker = ({ date, setTimeActive }) => {
   // }
 
   const [dateTime, setDateTime] = useState([]);
-
+  const [timeData, setTimeData] = useState([
+    { time: "01:00 AM", active: false },
+    { time: "01:00 AM", active: false },
+    { time: "03:00 AM", active: false },
+    { time: "01:00 AM", active: false },
+    { time: "01:00 AM", active: false },
+    { time: "01:00 AM", active: false },
+  ]);
   useEffect(() => {
     console.log(dateTime);
   }, [dateTime]);
 
-  const handleTime = (date, time) => {
+  const handleTime = (date, time, index) => {
     setDateTime([...dateTime, { date: date, time: time }]);
+
+    let tempTimeData = [...timeData];
+    tempTimeData[index].active = true;
+    setTimeData(tempTimeData);
+    console.log(tempTimeData);
   };
 
   return (
@@ -70,8 +66,14 @@ const TimePicker = ({ date, setTimeActive }) => {
       <h2>Select Time</h2>
 
       <div className="timepicker-wrapper">
-        {TimeData.map((time) => (
-          <TimeComponent handleTime={handleTime} date={date} time={time} />
+        {timeData.map((time, index) => (
+          <TimeComponent
+            index={index}
+            handleTime={handleTime}
+            date={date}
+            active={time.active}
+            time={time.time}
+          />
         ))}
       </div>
     </div>

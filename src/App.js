@@ -1,14 +1,17 @@
 import { BrowserRouter, Route } from "react-router-dom";
-
-import User from "./User";
 import Admin from "./Admin";
-import LoginModal from "./LoginModal/LoginModal";
+import Register from './authentication/Register';
+import Login from './authentication/Login';
+import { AuthProvider } from './contexts/AuthContext.js';
 
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={LoginModal} />
+    <AuthProvider>
+      <Route path="/" exact component={Register} />
+      <Route path="/login" exact component={Login} />
       <Route path="/admin" component={Admin} />
+    </AuthProvider>
     </BrowserRouter>
   );
 }

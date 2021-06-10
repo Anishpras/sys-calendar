@@ -1,48 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { firestore } from './firebase.utils'
+import db from './firebase.utils'
+import { useAuth } from "./contexts/AuthContext";
 
 const Admin = () => {
   const [profileData, setProfileData] = useState({});
-  const user = useSelector((state) => state.user);
+  const { currentUser } = useAuth();
   useEffect(() => {
     // console.log(profileData);
-    firestore
+    const doc = db
       .collection('mhp')
-      .doc(user.uid)
-      .get()
-      .then((doc) => {
-        if (doc.exists())
-          setProfileData(doc.data());
-        else
-          setProfileData({
-            name: "",
-            photoURL: "",
-            bio: "",
-            sessionDuration: 0,
-            fees: "",
-            weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
-          })
-      });
+      .doc(currentUser.uid)
+      .get();
+      if (doc.exists) {
+        console.log("hey")
+        setProfileData(doc.data());
+      }
+      else {
+        console.log("hello")
+        setProfileData({
+          name: "",
+          photoURL: "",
+          bio: "",
+          sessionDuration: 0,
+          fees: "",
+          weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
+        })
+      }
   }, []);
 
   const initialValues = {
-    name: profileData.name,
-    photoURL: profileData.photoURL,
-    bio: profileData.bio,
-    sessionDuration: profileData.sessionDuration,
-    fees: profileData.fees,
-    weekDaysChecked: profileData.weekDaysChecked,
+    name: "",
+    photoURL: "",
+    bio: "",
+    sessionDuration: 0,
+    fees: "",
+    weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
   };
 
   const onSubmit = (values) => {
     setProfileData(values);
     console.log(values);
-    firestore
+    db
       .collection('mhp')
-      .doc(user.uid)
+      .doc(currentUser.uid)
       .set({
         name: values.name,
         photoURL: values.photoURL,

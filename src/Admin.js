@@ -1,80 +1,145 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const Admin = () => {
-  const [mhpData, setMHPData] = useState({});
-  const [name, setName] = useState("");
-  const [photURL, setPhotURL] = useState("");
-  const [bio, setBio] = useState("");
-  const [fees, setFees] = useState(0);
-  const [sessionDuration, setSessionDuration] = useState(10);
-  // const [availability, setAvailability] = useState([
-  //   { monday: false },
-  //   { tuesday: false },
-  //   { wednesday: false },
-  //   { thursday: false },
-  //   { friday: false },
-  //   { saturday: false },
-  // ]);
+  const [profileData, setProfileData] = useState({});
+  useEffect(() => {
+    console.log(profileData);
+  }, [profileData]);
 
-  const saveDetails = (e) => {
-    setMHPData({
-      name: name,
-      sessionDuration: sessionDuration,
-      photoURL: photURL,
-      fees: fees,
-      bio: bio,
-    });
-    e.preventDefault();
+  const initialValues = {
+    name: "",
+    photoURL: "",
+    bio: "",
+    sessionDuration: 0,
+    fees: "",
+    weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
   };
 
+  const onSubmit = (values) => {
+    setProfileData(values);
+    console.log(values);
+  };
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Required"),
+    photoURL: Yup.string()
+      // .matches(
+      //   /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      //   "Enter correct url!"
+      // )
+      .required("Please enter website"),
+    bio: Yup.string().required("Required"),
+    sessionDuration: Yup.number()
+      .required("Required")
+      .positive("Sessions duration needs to be positive")
+      .integer(),
+    fees: Yup.string().required("Required"),
+    weekDaysChecked: Yup.array().min(1),
+  });
   return (
-    <div style={{ display: "flex", "flex-direction": "column", width: "10%" }}>
-      <form>
-        <label>Name</label>
-        <input
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-          type="text"
-          required
-        />
-        <label>PhotoUrl</label>
-        <input
-          onChange={(e) => setPhotURL(e.target.value)}
-          value={photURL}
-          type="text"
-          required
-        />
-        <label>Bio</label>
-        <textarea
-          onChange={(e) => setBio(e.target.value)}
-          value={bio}
-          cols="5"
-          rows="5"
-          required
-        />
+    <div className="admin">
+      {" "}
+      <div className="form">
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}>
+          <Form>
+            <div className="form-control">
+              {" "}
+              <label htmlFor="name">Name</label>
+              <Field id="name" name="name" placeholder="Enter your name" />
+              <ErrorMessage name="name" />
+            </div>
+            <div className="form-control">
+              {" "}
+              <label htmlFor="photoURL">PhotoURL</label>
+              <Field
+                id="photoURL"
+                name="photoURL"
+                placeholder="Enter a URL for profile photo"
+              />
+              <ErrorMessage name="photoURL" />
+            </div>
 
-        <label>Session-Duration</label>
-        <input
-          onChange={(e) => setSessionDuration(e.target.value)}
-          value={sessionDuration}
-          type="text"
-          required
-        />
-        <label>Fees</label>
-        <input
-          onChange={(e) => setFees(e.target.value)}
-          value={fees}
-          type="number"
-          required
-        />
-        {/* <label>Availability</label> */}
-        <button onClick={saveDetails}>Save</button>
-      </form>
-      <h1>{mhpData.name}</h1>
-      <h1>{mhpData.sessionDuration}</h1>
-      <h1>{mhpData.photoURL}</h1>
-      <h1>{mhpData.fees}</h1>
-      <h1>{mhpData.bio}</h1>
+            <div className="form-control">
+              {" "}
+              <label htmlFor="bio">Biography</label>
+              <Field
+                as="textarea"
+                id="bio"
+                name="bio"
+                placeholder="Biography"
+              />
+              <ErrorMessage name="bio" />
+            </div>
+
+            <div className="form-control">
+              {" "}
+              <label htmlFor="sessionDuration">Session - Duration</label>
+              <Field
+                type="number"
+                id="sessionDuration"
+                name="sessionDuration"
+                placeholder="Enter your session duration"
+              />
+              <ErrorMessage name="sessionDuration" />
+            </div>
+            <div className="form-control">
+              <label>
+                <Field type="checkbox" name="weekDaysChecked" value="monday" />
+                Monday
+              </label>
+              <label>
+                <Field type="checkbox" name="weekDaysChecked" value="tuesday" />
+                Tuesday
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="weekDaysChecked"
+                  value="wednesday"
+                />
+                Wednesday
+              </label>
+              <label>
+                <Field
+                  type="checkbox"
+                  name="weekDaysChecked"
+                  value="thursday"
+                />
+                Thursday
+              </label>
+              <label>
+                <Field type="checkbox" name="weekDaysChecked" value="friday" />
+                Friday
+              </label>
+            </div>
+            <div className="form-control">
+              {" "}
+              <label htmlFor="fees">Fees</label>
+              <Field id="fees" name="fees" placeholder="Enter your fees" />
+              <ErrorMessage name="fees" />
+            </div>
+            <button type="submit">Submit</button>
+          </Form>
+        </Formik>
+      </div>
+      <div className="profile">
+        <div className="profile-container">
+          <img src={profileData.photoURL} alt="" />
+          <h2>{profileData.name}</h2>
+          <p>{profileData.bio}</p>
+          <h3>{`Session Timing - ${profileData.sessionDuration} mins`}</h3>
+          <h4>Days Available - </h4>
+          {profileData.weekDaysChecked &&
+            profileData.weekDaysChecked.map((days) => <span>{days}</span>)}
+          <h4>
+            {profileData.fees ? ` Fees - ${profileData.fees}` : "Fees - 0"}
+          </h4>
+        </div>
+      </div>
     </div>
   );
 };

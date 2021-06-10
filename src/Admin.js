@@ -1,25 +1,56 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { firestore } from './firebase.utils'
 
 const Admin = () => {
   const [profileData, setProfileData] = useState({});
+  const user = useSelector((state) => state.user);
   useEffect(() => {
-    console.log(profileData);
-  }, [profileData]);
+    // console.log(profileData);
+    firestore
+      .collection('mhp')
+      .doc(user.uid)
+      .get()
+      .then((doc) => {
+        if (doc.exists())
+          setProfileData(doc.data());
+        else
+          setProfileData({
+            name: "",
+            photoURL: "",
+            bio: "",
+            sessionDuration: 0,
+            fees: "",
+            weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
+          })
+      });
+  }, []);
 
   const initialValues = {
-    name: "",
-    photoURL: "",
-    bio: "",
-    sessionDuration: 0,
-    fees: "",
-    weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
+    name: profileData.name,
+    photoURL: profileData.photoURL,
+    bio: profileData.bio,
+    sessionDuration: profileData.sessionDuration,
+    fees: profileData.fees,
+    weekDaysChecked: profileData.weekDaysChecked,
   };
 
   const onSubmit = (values) => {
     setProfileData(values);
     console.log(values);
+    firestore
+      .collection('mhp')
+      .doc(user.uid)
+      .set({
+        name: values.name,
+        photoURL: values.photoURL,
+        bio: values.bio,
+        sessionDuration: values.sessionDuration,
+        fees: values.fees,
+        weekDaysChecked: values.weekDaysChecked,
+      });
   };
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),

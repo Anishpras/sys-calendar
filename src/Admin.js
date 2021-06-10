@@ -9,25 +9,27 @@ const Admin = () => {
   const { currentUser } = useAuth();
   useEffect(() => {
     // console.log(profileData);
-    const doc = db
+    db
       .collection('mhp')
       .doc(currentUser.uid)
-      .get();
-      if (doc.exists) {
-        console.log("hey")
-        setProfileData(doc.data());
-      }
-      else {
-        console.log("hello")
-        setProfileData({
-          name: "",
-          photoURL: "",
-          bio: "",
-          sessionDuration: 0,
-          fees: "",
-          weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
-        })
-      }
+      .get()
+      .then((doc) =>{
+        if (doc.exists) {
+          console.log("hey")
+          setProfileData(doc.data());
+        }
+        else {
+          console.log("hello")
+          setProfileData({
+            name: "",
+            photoURL: "",
+            bio: "",
+            sessionDuration: 0,
+            fees: "",
+            weekDaysChecked: ["monday", "tuesday", "wednesday", "thursday", "friday"],
+          })
+        }
+      })
   }, []);
 
   const initialValues = {
